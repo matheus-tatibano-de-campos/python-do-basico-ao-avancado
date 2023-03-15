@@ -527,7 +527,7 @@ conj1 = set(vetor1)
 conj2 = set(vetor2)
 conj3 = conj1 | conj2
 print(conj3)
-"""
+
 # 32 - Leia dois vetores de inteiros x e y cada um com 5 elementos (garanta que o usuario nao adicione elemento repetidos,
 # calcule e mostre os vetores abaixo
 # soma entre  x e y de todos elementos
@@ -557,5 +557,135 @@ for i in range(5):
 for i in range(5):
     multi += vetor1[i] * vetor2[i]
 
-print(soma)
-print(multi)
+
+uniao = vetor1.copy()
+for elemento in vetor2:
+    if elemento not in vetor1:
+        uniao.append(elemento)
+
+difference_1 = set(vetor).difference(set(vetor2))
+difference_2 = set(vetor2).difference(set(vetor))
+
+list_difference = list(difference_1.union(difference_2))
+
+print("Soma de x e y:", soma)
+print("Produto de x e y: ", multi)
+print("Diferenca entre x e y: ", list_difference)
+print("Uniao entre x e y: ", uniao)
+
+# 33 - Faça um programa que leia um vetor de 15 posiloes e o compacte, ou seja elimine as posiçoes com valor zero
+#para isso todos os elementos a frente do valor zero devem ser movidos para tras do vetor
+
+
+vetor = []
+for i in range(15):
+    vetor.append(int(input(f"Digite o valor da posição {i+1}: ")))
+
+i = 0
+while i < len(vetor):
+    if vetor[i] == 0:
+        vetor.pop(i)
+    else:
+        i += 1
+
+while len(vetor) < 15:
+    vetor.append(0)
+
+print("Vetor compactado: ", vetor)
+
+# 34 - Peça ao usuario digitar dez valores números e ordene por ordem creascente esses valores, mostre na tela o valor digitado
+
+vetor = []
+for i in range(5):
+    vetor.append(int(input(f"Digite o valor da posição {i+1}: ")))
+vetor.sort()
+print(vetor)
+
+# 35 - Escreva um programa que leia um número inteiro positivo n e em seguida imprima n linhas do comando triangulo de pascal
+
+n = int(input("Digite o número de linhas do Triângulo de Pascal que deseja imprimir: "))
+
+pascal = [[1], [1, 1]]
+
+for i in range(2, n):
+    linha = [1]
+    for j in range(1, i):
+        linha.append(pascal[i-1][j-1] + pascal[i-1][j])
+    linha.append(1)
+    pascal.append(linha)
+
+for linha in pascal:
+    print(linha)
+
+# 36 - Leia uma matriz 4x 4, conte e escreva quantos valroes maiores que 10 ela possui
+
+# Lê a matriz 4x4
+matriz = []
+for i in range(4):
+    linha = []
+    for j in range(4):
+        valor = int(input(f"Digite o valor da posição ({i},{j}): "))
+        linha.append(valor)
+    matriz.append(linha)
+
+# Conta quantos valores são maiores que 10
+contagem = 0
+for linha in matriz:
+    for valor in linha:
+        if valor > 10:
+            contagem += 1
+
+# Escreve o resultado
+print(f"A matriz possui {contagem} valores maiores que 10.")
+
+# 37 - Declare uma matriz 5 x 5 Preencha com 1 a diagonal principal e com 0 os demais elementos , escreva ao final a matriz obtida
+
+matriz = [[0 for j in range(5)] for i in range(5)]
+
+for i in range(5):
+    matriz[i][i] = 1
+
+for i in range(5):
+    for j in range(5):
+        print(matriz[i][j], end=" ")
+    print()
+
+# 38 - Faça um origrana que preencha uma matriz 4 x 4 com o produto do valor da linha e da coluna de cada elemento, em seguida imprima na tela a matriz
+
+matriz = [[0 for j in range(4)] for i in range(4)]
+
+for i in range(4):
+    for j in range(4):
+        matriz[i][j] = i * j
+
+for i in range(4):
+    for j in range(4):
+        print(matriz[i][j], end=" ")
+    print()
+"""
+# 39 - Leia uma matriz 4 x 4  imprima  a matriz e retorne a localização ( linha coluna) do maior valor.
+
+# Lê a matriz de entrada
+matriz = []
+for i in range(4):
+    linha = list(map(int, input().split()))
+    matriz.append(linha)
+
+# Imprime a matriz
+print("Matriz:")
+for linha in matriz:
+    print(linha)
+
+# Encontra o maior valor e sua localização
+maior_valor = matriz[0][0]
+maior_linha = 0
+maior_coluna = 0
+for i in range(4):
+    for j in range(4):
+        if matriz[i][j] > maior_valor:
+            maior_valor = matriz[i][j]
+            maior_linha = i
+            maior_coluna = j
+
+# Imprime a localização do maior valor
+print(f"O maior valor é {maior_valor} e está na linha {maior_linha} e coluna {maior_coluna}.")
